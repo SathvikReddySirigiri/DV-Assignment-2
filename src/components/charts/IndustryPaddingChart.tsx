@@ -51,7 +51,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
     Southwest: 800,
   });
   const [bandOp, setBandOp] = useState(0);
-  const [dotsOp, setDotsOp] = useState(0);
   const [bracketOp, setBracketOp] = useState(0);
   const [hoverYear, setHoverYear] = useState<number | null>(null);
 
@@ -85,7 +84,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
         h,
         paths: { American: "", Delta: "", Southwest: "" } as Record<CarrierName, string>,
         bandD: "",
-        pad,
         spread2020: 0,
         spread2025: 0,
         min2020: 0,
@@ -151,7 +149,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
       h,
       paths,
       bandD,
-      pad,
       spread2020,
       spread2025,
       min2020,
@@ -160,7 +157,7 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
     };
   }, [rows, size]);
 
-  const { x, y, w, h, paths, bandD, pad, spread2020, spread2025, min2020, max2020, min2025 } = layout;
+  const { x, y, w, h, paths, bandD, spread2020, spread2025, min2020, max2020 } = layout;
 
   useLayoutEffect(() => {
     const L: Record<CarrierName, number> = { American: 800, Delta: 800, Southwest: 800 };
@@ -175,7 +172,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
   useEffect(() => {
     if (!revealed) {
       setBandOp(0);
-      setDotsOp(0);
       setBracketOp(0);
       return;
     }
@@ -203,12 +199,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
         Delta: L.Delta * (1 - lineE),
         Southwest: L.Southwest * (1 - lineE),
       });
-
-      if (el >= lineDur) {
-        setDotsOp(Math.min(1, (el - lineDur) / 300));
-      } else {
-        setDotsOp(0);
-      }
 
       if (el >= lineDur) {
         const bT = Math.min(1, (el - lineDur) / bandDur);
