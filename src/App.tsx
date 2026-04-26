@@ -134,8 +134,8 @@ export default function App() {
           <span>American · Delta · Southwest</span>
           <span>277,000 departures</span>
         </div>
-        <h1 className="headline max-w-none text-[clamp(2.05rem,4.2vw,3.85rem)] leading-[1.06] tracking-[-0.015em] min-[1220px]:whitespace-nowrap">
-          Three lies your flight stats are telling you
+        <h1 className="headline max-w-[24ch] text-[clamp(1.85rem,3.4vw,3.1rem)] leading-[1.08] tracking-[-0.015em]">
+          Beyond the Average: Interpreting Flight Delay Reliability at TPA
         </h1>
         <p className="deck mt-3 max-w-[72ch] italic">
           The industry loves a single <span className="text-emph-lie">average delay</span>. At TPA, that average
