@@ -184,7 +184,8 @@ function d3mean(values: number[]): number | undefined {
   return s / n;
 }
 
-function round1(x: number): number {
+function round1(x: number | undefined): number {
+  if (x == null || !Number.isFinite(x)) return NaN;
   return Math.round(x * 10) / 10;
 }
 
