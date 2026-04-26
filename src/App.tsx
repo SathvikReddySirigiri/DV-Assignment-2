@@ -151,7 +151,7 @@ export default function App() {
           <span>Data: U.S. Bureau of Transportation Statistics</span>
           <span className="dot">·</span>
           <a
-            href="REPLACE_WITH_YOUR_VIDEO_URL"
+            href="https://www.youtube.com/watch?v=dDPtj7ZNVYc"
             target="_blank"
             rel="noopener noreferrer"
             className="byline-video-link"
