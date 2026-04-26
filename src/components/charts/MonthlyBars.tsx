@@ -73,7 +73,8 @@ export function MonthlyBars({ rows, overallMeanDelay, revealed }: Props) {
   const pointerMove = (evt: React.PointerEvent<SVGRectElement>) => {
     const svg = evt.currentTarget.ownerSVGElement;
     if (!svg) return;
-    const layer = evt.currentTarget.parentElement as SVGGElement;
+    const layer = evt.currentTarget.parentNode;
+    if (!(layer instanceof SVGGElement)) return;
     const ctm = layer.getScreenCTM();
     if (!ctm) return;
     const pt = svg.createSVGPoint();

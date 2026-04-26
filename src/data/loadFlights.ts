@@ -91,7 +91,7 @@ function parseCsvText(text: string, carrier: CarrierName): Promise<FlightRow[]> 
         }
         resolve(out);
       },
-      error: (err) => reject(err),
+      error: (err: Error) => reject(err),
     });
   });
 }

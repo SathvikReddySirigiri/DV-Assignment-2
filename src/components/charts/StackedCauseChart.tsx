@@ -112,12 +112,13 @@ export function StackedCauseChart({ rows, revealed, compact = false, showXAxisLa
   const clipH = h * prog;
 
   const pointerMove = (evt: React.PointerEvent<SVGRectElement>) => {
-    const svg = (evt.target as Element).ownerSVGElement;
+    const svg = evt.currentTarget.ownerSVGElement;
     if (!svg) return;
+    const layer = evt.currentTarget.parentNode;
+    if (!(layer instanceof SVGGElement)) return;
     const pt = svg.createSVGPoint();
     pt.x = evt.clientX;
     pt.y = evt.clientY;
-    const layer = evt.currentTarget.parentElement as SVGGElement;
     const ctm = layer.getScreenCTM();
     if (!ctm) return;
     const p = pt.matrixTransform(ctm.inverse());

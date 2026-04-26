@@ -91,7 +91,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
         min2020: 0,
         max2020: 0,
         min2025: 0,
-        max2025: 0,
       };
     }
 
@@ -144,7 +143,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
     const min2020 = p2020.length ? Math.min(...p2020) : 0;
     const max2020 = p2020.length ? Math.max(...p2020) : 0;
     const min2025 = p2025.length ? Math.min(...p2025) : 0;
-    const max2025 = p2025.length ? Math.max(...p2025) : 0;
 
     return {
       x,
@@ -159,11 +157,10 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
       min2020,
       max2020,
       min2025,
-      max2025,
     };
   }, [rows, size]);
 
-  const { x, y, w, h, paths, bandD, pad, spread2020, spread2025, min2020, max2020, min2025, max2025 } = layout;
+  const { x, y, w, h, paths, bandD, pad, spread2020, spread2025, min2020, max2020, min2025 } = layout;
 
   useLayoutEffect(() => {
     const L: Record<CarrierName, number> = { American: 800, Delta: 800, Southwest: 800 };
@@ -238,7 +235,8 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
   const pointerMove = (evt: React.PointerEvent<SVGRectElement>) => {
     const svg = evt.currentTarget.ownerSVGElement;
     if (!svg) return;
-    const layer = evt.currentTarget.parentElement as SVGGElement;
+    const layer = evt.currentTarget.parentNode;
+    if (!(layer instanceof SVGGElement)) return;
     const ctm = layer.getScreenCTM();
     if (!ctm) return;
     const pt = svg.createSVGPoint();
@@ -275,8 +273,6 @@ export function IndustryPaddingChart({ rows, revealed }: Props) {
   }
 
   const cx2020 = x(2020);
-  const cx2025 = x(2025);
-
   return (
     <div
       ref={hostRef}
